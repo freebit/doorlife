@@ -9,7 +9,7 @@ import { Interior } from "../../types/Interior";
   templateUrl: './interior-list.component.html',
   styleUrls: ['./interior-list.component.less'],
 
-  providers:[HttpService]
+  providers:[]
 })
 export class InteriorListComponent implements OnInit {
 

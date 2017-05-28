@@ -20,7 +20,7 @@ import { DoorListComponent } from './components/door-list/door-list.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [DoorLifeRoot]
 })
 export class AppModule { }

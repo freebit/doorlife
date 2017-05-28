@@ -14,12 +14,11 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getInteriors(): Observable<Interior[]>{
-    return this.http.get('interiors.json').map((resp:Response) => {
+    return this.http.get('assets/interiors.json').map((resp:Response) => {
 
-      let list = resp.json().data;
-      let interiors :Interior[] = [];
+      let list = resp.json();
 
-      return interiors;
+      return list;
 
     }).catch((error: any) => Observable.throw(error) );
   }

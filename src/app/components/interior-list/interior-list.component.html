@@ -1,3 +1,6 @@
-<p>
-  {{error}}
-</p>
+<ul>
+  <li *ngFor="let interior of interiors">
+    <img [src]="interior.imgSrc" alt="">
+    <h3>{{interior.title}}</h3>
+  </li>
+</ul>

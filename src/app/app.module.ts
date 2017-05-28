@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { DoorLifeRoot } from './components/doorlife-root/doorlife-root.component';
+import { InteriorListComponent } from './components/interior-list/interior-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    DoorLifeRoot,
+    InteriorListComponent
   ],
   imports: [
     BrowserModule,
@@ -15,6 +17,6 @@ import { AppComponent } from './app.component';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [DoorLifeRoot]
 })
 export class AppModule { }

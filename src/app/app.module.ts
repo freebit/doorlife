@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { DoorLifeRoot } from './components/doorlife-root/doorlife-root.component';
 import { InteriorListComponent } from './components/interior-list/interior-list.component';
+import { DoorListComponent } from './components/door-list/door-list.component';
 
 @NgModule({
   declarations: [
     DoorLifeRoot,
-    InteriorListComponent
+    InteriorListComponent,
+    DoorListComponent
   ],
   imports: [
     BrowserModule,

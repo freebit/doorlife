@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { Interior } from '../types/Interior';
+import { Door } from '../types/Door';
 
 @Injectable()
 export class HttpService {
@@ -14,7 +15,17 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getInteriors(): Observable<Interior[]>{
-    return this.http.get('assets/interiors.json').map((resp:Response) => {
+    return this.http.get('assets/json/interiors.json').map((resp:Response) => {
+
+      let list = resp.json();
+
+      return list;
+
+    }).catch((error: any) => Observable.throw(error) );
+  }
+
+  getDoors(): Observable<Door[]>{
+    return this.http.get('assets/json/doors.json').map((resp:Response) => {
 
       let list = resp.json();
 

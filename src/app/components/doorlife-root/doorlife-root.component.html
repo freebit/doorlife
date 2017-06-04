@@ -1,6 +1,6 @@
 <div id="doorlife">
-  <app-interior-list></app-interior-list>
-  <app-door-list></app-door-list>
+  <app-interior-list (onFetch)="childDataFetch($event)"></app-interior-list>
+  <app-door-list (onFetch)="childDataFetch($event)"></app-door-list>
 
   <section class="stage-view">
     <header>
@@ -9,5 +9,10 @@
     <div class="interior-view">
       <div class="door-view"></div>
     </div>
+    <div class="control-panel">
+      <button type="button" (click)="showAlert()">alert</button>
+    </div>
   </section>
+
+  <ng-template #tpl_1><span class="from-tpl">template 1</span></ng-template>
 </div>

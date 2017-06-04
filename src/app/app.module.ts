@@ -8,12 +8,14 @@ import { HttpService } from './services/http.service';
 import { DoorLifeRoot } from './components/doorlife-root/doorlife-root.component';
 import { InteriorListComponent } from './components/interior-list/interior-list.component';
 import { DoorListComponent } from './components/door-list/door-list.component';
+import { SytemAlert } from './components/ui/system-alert/system-alert.component';
 
 @NgModule({
   declarations: [
     DoorLifeRoot,
     InteriorListComponent,
-    DoorListComponent
+    DoorListComponent,
+    SytemAlert
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,8 @@ import { DoorListComponent } from './components/door-list/door-list.component';
     HttpModule
   ],
   providers: [HttpService],
-  bootstrap: [DoorLifeRoot]
+  bootstrap: [DoorLifeRoot],
+
+  entryComponents: [SytemAlert]
 })
 export class AppModule { }

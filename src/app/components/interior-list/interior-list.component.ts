@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from "../../services/http.service";
 import { Response } from '@angular/http';
 
@@ -18,13 +18,22 @@ export class InteriorListComponent implements OnInit {
   ngOnInit() {
     this.httpService.getInteriors().subscribe(
 
-        data => this.interiors = data,
+        data => {
+            this.interiors = data;
+            this.fetchEmmit(data);
+        },
 
         error => {
           this.error = error;
           console.log(error);
         }
     )
+  }
+
+  @Output() onFetch = new EventEmitter<boolean>();
+
+  fetchEmmit(increased) {
+     this.onFetch.emit(increased);
   }
 
 }

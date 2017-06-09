@@ -57,7 +57,7 @@ export class DoorLifeRoot implements OnInit, AfterViewInit {
   }
 
   childDataFetch(initData){
-    this.showAlert('');
+
   }
 
   showAlert(str:String){

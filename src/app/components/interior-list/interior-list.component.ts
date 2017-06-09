@@ -21,6 +21,7 @@ export class InteriorListComponent implements OnInit {
         data => {
             this.interiors = data;
             this.fetchEmmit(data);
+
         },
 
         error => {
@@ -32,8 +33,8 @@ export class InteriorListComponent implements OnInit {
 
   @Output() onFetch = new EventEmitter<boolean>();
 
-  fetchEmmit(increased) {
-     this.onFetch.emit(increased);
+  fetchEmmit(data) {
+     this.onFetch.emit(data);
   }
 
 }

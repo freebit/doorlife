@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../../services/http.service";
 import { Door } from '../../types/Door';
+import { Collection } from '../../types/Collection';
 
 @Component({
   selector: 'app-door-list',
@@ -9,15 +10,18 @@ import { Door } from '../../types/Door';
 })
 export class DoorListComponent implements OnInit {
 
+  collections: Collection[] = [];
   doors: Door[] = [];
   error:any;
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.httpService.getDoors().subscribe(
+    this.httpService.getCollections().subscribe(
 
-        data => this.doors = data,
+        data => {
+            //this.collections = data
+        },
 
         error => {
           this.error = error;

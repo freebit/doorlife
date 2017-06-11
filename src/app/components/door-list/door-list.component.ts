@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from "../../services/http.service";
 import { Door } from '../../types/Door';
 import { Collection } from '../../types/Collection';
+import { find } from 'lodash'
 
 @Component({
   selector: 'app-door-list',
@@ -14,13 +15,15 @@ export class DoorListComponent implements OnInit {
   doors: Door[] = [];
   error:any;
 
+    @Output() onDoorSelect = new EventEmitter<string>();
+
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
     this.httpService.getCollections().subscribe(
 
         data => {
-            //this.collections = data
+            this.collections = data
         },
 
         error => {
@@ -29,5 +32,27 @@ export class DoorListComponent implements OnInit {
         }
     )
   }
+
+    getCollectionDoors(id:number){
+
+     this.httpService.getDoorsByCollection(id).subscribe(
+
+         data => {
+             this.doors = data
+         },
+
+         error => {
+             this.error = error;
+             console.log(error);
+         }
+     )
+
+    }
+
+
+    selectDoor(doorId:number){
+        let door = find(this.doors, ({id}) => id == doorId);
+        this.onDoorSelect.emit(door.imgSrc);
+    }
 
 }

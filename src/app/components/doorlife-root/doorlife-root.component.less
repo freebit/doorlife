@@ -2,8 +2,35 @@
   position: relative;
   border: 1px solid;
 }
-code{
-  font-size: 52px;
-  color: lighten(#9fdea1,10%);
-  text-shadow: #1a4064 1px 1px 0px;
+
+.stage-view{
+  position: relative;
+  width: 100%;
+}
+
+.interior-view{
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.door-view{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  height: auto;
+  z-index: 2;
+
+  .image{
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  img{
+    display: block;
+    position: relative;
+    width: 100%;
+  }
 }

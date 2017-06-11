@@ -24,7 +24,8 @@ import { SytemAlert } from '../ui/system-alert/system-alert.component';
 export class DoorLifeRoot implements OnInit, AfterViewInit {
 
   title: string = 'root component title';
-
+  currentInteriorUrl: string;
+  currentDoorUrl: string;
   alert : ComponentRef<any>
 
   tplView: EmbeddedViewRef<any>;
@@ -45,19 +46,18 @@ export class DoorLifeRoot implements OnInit, AfterViewInit {
 
   ngOnInit(){}
 
-  ngAfterViewInit(){
-
-    // let buttonElement = this.renderer.createElement('button');
-    //
-    // const text = this.renderer.createText(this.title);
-    //
-    // this.renderer.appendChild(buttonElement, text);
-    // this.renderer.appendChild(this.elementRef.nativeElement, buttonElement);
-
-  }
+  ngAfterViewInit(){}
 
   childDataFetch(initData){
 
+  }
+
+  setInterior(imageUri){
+    this.currentInteriorUrl = imageUri;
+  }
+
+  setDoor(imageUri){
+    this.currentDoorUrl = imageUri;
   }
 
   showAlert(str:String){

@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { config } from '../appConfig';
+
 import { Interior } from '../types/Interior';
 import { Collection } from '../types/Collection';
 import { Door } from '../types/Door';
@@ -16,29 +18,32 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getInteriors(): Observable<Interior[]>{
-    return this.http.get('http://estetdveri.ru/getitems?action=interiors').map((resp:Response) => {
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=interiors`).map((resp:Response) => {
 
-      return resp.json().map( it => {it.imgSrc = `http://estetdveri.ru/${it.imgSrc}`; return it });
+      return resp.json().map( this.addMainUrl );
 
     }).catch((error: any) => Observable.throw(error) );
   }
 
   getCollections(): Observable<Collection[]>{
-    return this.http.get('http://estetdveri.ru/getitems?action=collections').map((resp:Response) => {
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=collections`).map((resp:Response) => {
 
-      return resp.json().map( it => {it.imgSrc = `http://estetdveri.ru/${it.imgSrc}`; return it });
+      return resp.json().map(this.addMainUrl);
 
     }).catch((error: any) => Observable.throw(error) );
   }
 
-  getDoors(): Observable<Door[]>{
-    return this.http.get('assets/json/doors.json').map((resp:Response) => {
+  getDoorsByCollection(id:number): Observable<Door[]>{
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=doors&collection=${id}`).map((resp:Response) => {
 
-      let list = resp.json();
-
-      return list;
+      return resp.json().map(this.addMainUrl);
 
     }).catch((error: any) => Observable.throw(error) );
+  }
+
+  private addMainUrl(it){
+    it.imgSrc = `${config.dataUrl}${it.imgSrc}`;
+    return it;
   }
 
 }

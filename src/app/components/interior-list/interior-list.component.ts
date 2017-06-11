@@ -32,9 +32,14 @@ export class InteriorListComponent implements OnInit {
   }
 
   @Output() onFetch = new EventEmitter<boolean>();
+  @Output() onSelect = new EventEmitter<string>();
 
   fetchEmmit(data) {
      this.onFetch.emit(data);
   }
+
+    selectInterior(imageUri){
+        this.onSelect.emit(imageUri);
+    }
 
 }

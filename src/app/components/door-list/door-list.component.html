@@ -1,13 +1,13 @@
 <div class="list vertical">
   <ul>
-    <li *ngFor="let collection of collections">
+    <li *ngFor="let collection of collections" (click)="getCollectionDoors(collection.id)">
       <div class="image"><img [src]="collection.imgSrc" alt=""></div>
       <h3>{{collection.title}}</h3>
     </li>
   </ul>
 </div>
 <ul>
-  <li *ngFor="let door of doors">
+  <li *ngFor="let door of doors" (click)="selectDoor(door.id)">
     <div class="image"><img [src]="door.imgSrc" alt=""></div>
     <h3>{{door.title}}</h3>
   </li>

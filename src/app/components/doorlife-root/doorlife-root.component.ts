@@ -24,8 +24,8 @@ import { SytemAlert } from '../ui/system-alert/system-alert.component';
 export class DoorLifeRoot implements OnInit, AfterViewInit {
 
   title: string = 'root component title';
-  currentInteriorUrl: string;
-  currentDoorUrl: string;
+  currentInteriorUrl: string = '';
+  currentDoorUrl: string = '';
   alert : ComponentRef<any>
 
   tplView: EmbeddedViewRef<any>;

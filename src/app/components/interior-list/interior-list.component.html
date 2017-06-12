@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let interior of interiors" (click)="selectInterior(interior.imgSrc)">
     <div class="image"><img [src]="interior.imgSrc" alt=""></div>
-    <h3>{{interior.title}}</h3>
+    <div class="title">{{interior.title}}</div>
   </li>
 </ul>

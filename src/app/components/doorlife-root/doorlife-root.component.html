@@ -1,11 +1,5 @@
 <div id="doorlife">
-  <app-interior-list (onFetch)="childDataFetch($event)" (onSelect)="setInterior($event)"></app-interior-list>
-  <app-door-list (onFetch)="childDataFetch($event)" (onDoorSelect)="setDoor($event)"></app-door-list>
-
   <section class="stage-view">
-    <header>
-      <h2 class="title">{{title}}</h2>
-    </header>
     <div class="interior-view">
       <div class="image">
         <img src="{{currentInteriorUrl}}" alt="">
@@ -17,9 +11,14 @@
       </div>
     </div>
     <div class="control-panel">
-      <button type="button" (click)="showAlert()">alert</button>
+      <!--<button type="button" (click)="showAlert()">alert</button>-->
     </div>
   </section>
+
+  <div class="selector">
+    <app-interior-list (onFetch)="childDataFetch($event)" (onSelect)="setInterior($event)"></app-interior-list>
+    <app-door-list (onFetch)="childDataFetch($event)" (onDoorSelect)="setDoor($event)"></app-door-list>
+  </div>
 
   <ng-template #tpl_1><span class="from-tpl">template 1</span></ng-template>
 </div>

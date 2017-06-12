@@ -1,17 +1,42 @@
 #doorlife{
   position: relative;
-  border: 1px solid;
+  width: 97%;
+  height: 90%;
+  background-color: #2a93b9;
+}
+
+.selector{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+
+  overflow: hidden;
 }
 
 .stage-view{
-  position: relative;
+  position: absolute;
   width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
 }
 
 .interior-view{
   position: relative;
   width: 100%;
-  z-index: 1;
+  height: 100%;
+
+  & > .image{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    img{
+      max-height: 100%;
+    }
+  }
 }
 
 .door-view{
@@ -22,7 +47,7 @@
   height: auto;
   z-index: 2;
 
-  .image{
+  & > .image{
     position: relative;
     width: 100%;
     height: auto;

@@ -20,17 +20,17 @@ export class DoorListComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.httpService.getCollections().subscribe(
-
-        data => {
-            this.collections = data
-        },
-
-        error => {
-          this.error = error;
-          console.log(error);
-        }
-    )
+    // this.httpService.getCollections().subscribe(
+    //
+    //     data => {
+    //         this.collections = data
+    //     },
+    //
+    //     error => {
+    //       this.error = error;
+    //       console.log(error);
+    //     }
+    // )
   }
 
     getCollectionDoors(id:number){

@@ -68,10 +68,7 @@ export class DoorLifeRoot implements OnInit, AfterViewInit {
 
       const SytemAlertComponentFactory = this._cfResolver.resolveComponentFactory(SytemAlert);
 
-      this.alert = this.viewContainerRef.createComponent(
-          SytemAlertComponentFactory,
-          0
-      );
+      this.alert = this.viewContainerRef.createComponent(SytemAlertComponentFactory, 0);
 
 
       this.alert.instance.showAlert(str);

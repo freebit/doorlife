@@ -10,21 +10,28 @@ import { InteriorListComponent } from './components/interior-list/interior-list.
 import { DoorListComponent } from './components/door-list/door-list.component';
 import { SytemAlert } from './components/ui/system-alert/system-alert.component';
 
+import { AngularDraggableModule } from 'angular2-draggable';
+
+import { DraggableDirective } from './directives/draggable.directive';
+
 @NgModule({
   declarations: [
     DoorLifeRoot,
     InteriorListComponent,
     DoorListComponent,
-    SytemAlert
+    SytemAlert,
+    DraggableDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AngularDraggableModule
   ],
   providers: [HttpService],
   bootstrap: [DoorLifeRoot],
 
   entryComponents: [SytemAlert]
 })
+
 export class AppModule { }

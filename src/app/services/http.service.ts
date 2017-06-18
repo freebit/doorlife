@@ -26,11 +26,9 @@ export class HttpService {
   }
 
   getCollections(): Observable<Collection[]>{
-    return this.http.get(`${config.dataUrl}${config.mainService}?action=collections`).map((resp:Response) => {
-
-      return resp.json().map(this.addMainUrl);
-
-    }).catch((error: any) => Observable.throw(error) );
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=collections`)
+        .map((resp:Response) => resp.json().map(this.addMainUrl))
+        .catch((error: any) => Observable.throw(error) );
   }
 
   getDoorsByCollection(id:number): Observable<Door[]>{

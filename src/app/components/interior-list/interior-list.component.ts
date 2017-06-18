@@ -13,22 +13,23 @@ export class InteriorListComponent implements OnInit {
 
   interiors: Interior[] = [];
   error:any;
+
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.httpService.getInteriors().subscribe(
-
-        data => {
-            this.interiors = data;
-            this.fetchEmmit(data);
-
-        },
-
-        error => {
-          this.error = error;
-          console.log(error);
-        }
-    )
+    // this.httpService.getInteriors().subscribe(
+    //
+    //     data => {
+    //         this.interiors = data;
+    //         this.fetchEmmit(data);
+    //         this.selectInterior(this.interiors[0].imgSrc);
+    //     },
+    //
+    //     error => {
+    //       this.error = error;
+    //       console.log(error);
+    //     }
+    // )
   }
 
   @Output() onFetch = new EventEmitter<boolean>();

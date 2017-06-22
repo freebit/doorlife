@@ -13,6 +13,7 @@ import { SytemAlert } from './components/ui/system-alert/system-alert.component'
 import { AngularDraggableModule } from 'angular2-draggable';
 
 import { DraggableDirective } from './directives/draggable.directive';
+import { EstetDoorImageComponent } from './components/estet-door-image/estet-door-image.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DraggableDirective } from './directives/draggable.directive';
     InteriorListComponent,
     DoorListComponent,
     SytemAlert,
-    DraggableDirective
+    DraggableDirective,
+    EstetDoorImageComponent
   ],
   imports: [
     BrowserModule,

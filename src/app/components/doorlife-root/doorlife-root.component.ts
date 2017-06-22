@@ -85,7 +85,8 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
     this.viewContainerRef.element.nativeElement.style.display = this.componentCssDisplay;
   }
 
-  close(){
+  hide(){
+    this.componentCssDisplay = this.viewContainerRef.element.nativeElement.style.display;
     this.viewContainerRef.element.nativeElement.style.display = 'none';
   }
 
@@ -97,7 +98,7 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
   }
 
   publicClose(){
-    this.ngZone.run(() => this.close());
+    this.ngZone.run(() => this.hide());
   }
 
   ngOnDestroy(){

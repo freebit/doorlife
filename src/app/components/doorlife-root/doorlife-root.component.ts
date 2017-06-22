@@ -1,16 +1,12 @@
 import {
   Component,
-  Renderer2,
   ViewContainerRef,
-  ElementRef,
   ComponentRef,
-  TemplateRef,
   OnInit,
   AfterViewInit,
-  ViewChild,
-  Injector,
+  OnDestroy,
   ComponentFactoryResolver,
-  EmbeddedViewRef
+  NgZone
 } from '@angular/core';
 
 import { SytemAlert } from '../ui/system-alert/system-alert.component';
@@ -21,32 +17,37 @@ import { SytemAlert } from '../ui/system-alert/system-alert.component';
   styleUrls: ['./doorlife-root.component.less']
 })
 
-export class DoorLifeRoot implements OnInit, AfterViewInit {
+export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
+
+  componentCssDisplay: string = 'fixed';
 
   title: string = 'root component title';
   currentInteriorUrl: string = '';
   currentDoorUrl: string = '';
-  alert : ComponentRef<any>
-
-  tplView: EmbeddedViewRef<any>;
-  @ViewChild('tpl_1') tpl1: TemplateRef<any>;
-
-
+  alert : ComponentRef<any>;
 
   constructor(
-      private renderer: Renderer2,
       private viewContainerRef: ViewContainerRef,
-      private elementRef: ElementRef,
-
-      private _injector: Injector,
-      private _cfResolver: ComponentFactoryResolver
+      private _cfResolver: ComponentFactoryResolver,
+      private ngZone: NgZone
   ) {
 
   }
 
-  ngOnInit(){}
+  ngOnInit(){
 
-  ngAfterViewInit(){}
+    this.componentCssDisplay = this.viewContainerRef.element.nativeElement.style.display;
+    this.viewContainerRef.element.nativeElement.style.display = 'none';
+
+    window['freeb'] = window['freeb'] || {};
+    window['freeb'].doorlife = window['freeb'].doorlife || {};
+    window['freeb'].doorlife.open = this.publicShow.bind(this);
+    window['freeb'].doorlife.close = this.publicClose.bind(this);
+  }
+
+  ngAfterViewInit(){
+
+  }
 
   childDataFetch(initData){
 
@@ -61,20 +62,15 @@ export class DoorLifeRoot implements OnInit, AfterViewInit {
   }
 
   showAlert(str:String){
-
-    if(this.alert != null){
+     if(this.alert != null) {
       this.alert.instance.showAlert(str);
-    }else{
-
+    }else {
       const SytemAlertComponentFactory = this._cfResolver.resolveComponentFactory(SytemAlert);
-
       this.alert = this.viewContainerRef.createComponent(SytemAlertComponentFactory, 0);
-
-
       this.alert.instance.showAlert(str);
     }
 
-
+    //alert(str)
 
   }
 
@@ -83,6 +79,30 @@ export class DoorLifeRoot implements OnInit, AfterViewInit {
       this.alert.destroy();
       this.alert = null;
     }
+  }
+
+  show(){
+    this.viewContainerRef.element.nativeElement.style.display = this.componentCssDisplay;
+  }
+
+  close(){
+    this.viewContainerRef.element.nativeElement.style.display = 'none';
+  }
+
+  publicShow(uri?:string){
+    this.ngZone.run(() => {
+      uri && (this.currentDoorUrl = uri);
+      this.show();
+    });
+  }
+
+  publicClose(){
+    this.ngZone.run(() => this.close());
+  }
+
+  ngOnDestroy(){
+    this.destroyAlert();
+    window['freeb'].doorlife.showAlert = null;
   }
 
 }

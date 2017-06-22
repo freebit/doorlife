@@ -22,7 +22,6 @@ export class SytemAlert implements OnInit{
   }
 
   public showAlert(str:string){
-
       this.content = str;
       this.style.display = `block`;
   }

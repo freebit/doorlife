@@ -4,7 +4,7 @@
       <div class="image">
         <img src="{{currentInteriorUrl}}" alt="">
       </div>
-      <div class="door-view" draggable >
+      <div class="door-view" ngDraggable >
         <div class="image">
           <img src="{{currentDoorUrl}}" alt="">
         </div>
@@ -21,4 +21,5 @@
   </div>
 
   <ng-template #tpl_1><span class="from-tpl">template 1</span></ng-template>
+  <div class="closer" (click)="close()">&times;</div>
 </div>

@@ -31,7 +31,7 @@ import { EstetDoorImageComponent } from './components/estet-door-image/estet-doo
     AngularDraggableModule
   ],
   providers: [HttpService],
-  bootstrap: [DoorLifeRoot],
+  bootstrap: [EstetDoorImageComponent, DoorLifeRoot],
 
   entryComponents: [SytemAlert]
 })

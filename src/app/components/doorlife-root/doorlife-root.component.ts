@@ -39,6 +39,8 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
     this.componentCssDisplay = this.viewContainerRef.element.nativeElement.style.display;
     this.viewContainerRef.element.nativeElement.style.display = 'none';
 
+    //this.publicShow('http://estetdveri.ru/images/Royal/R1/royal_r1_n_ceramic_black.jpg');
+
     window['freeb'] = window['freeb'] || {};
     window['freeb'].doorlife = window['freeb'].doorlife || {};
     window['freeb'].doorlife.open = this.publicShow.bind(this);

@@ -11,8 +11,8 @@ import { DoorListComponent } from './components/door-list/door-list.component';
 import { SytemAlert } from './components/ui/system-alert/system-alert.component';
 
 import { AngularDraggableModule } from 'angular2-draggable';
+import { ResizableModule } from 'angular-resizable-element';
 
-import { DraggableDirective } from './directives/draggable.directive';
 import { EstetDoorImageComponent } from './components/estet-door-image/estet-door-image.component';
 
 @NgModule({
@@ -21,17 +21,17 @@ import { EstetDoorImageComponent } from './components/estet-door-image/estet-doo
     InteriorListComponent,
     DoorListComponent,
     SytemAlert,
-    DraggableDirective,
     EstetDoorImageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularDraggableModule
+    AngularDraggableModule,
+    ResizableModule
   ],
   providers: [HttpService],
-  bootstrap: [EstetDoorImageComponent, DoorLifeRoot],
+  bootstrap: [DoorLifeRoot],
 
   entryComponents: [SytemAlert]
 })

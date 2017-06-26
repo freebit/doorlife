@@ -4,7 +4,10 @@
       <div class="image">
         <img src="{{currentInteriorUrl}}" alt="">
       </div>
-      <div class="door-view" ngDraggable >
+      <div class="door-view" [ngStyle]="style" ngDraggable mwlResizable [enableGhostResize]="true"
+           [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+           (resizeEnd)="onResizeEnd($event)"
+      >
         <div class="image">
           <img src="{{currentDoorUrl}}" alt="">
         </div>

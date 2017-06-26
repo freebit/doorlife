@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { SytemAlert } from '../ui/system-alert/system-alert.component';
+import {ResizeEvent} from 'angular-resizable-element';
 
 @Component({
   selector: 'doorlife-root',
@@ -20,6 +21,7 @@ import { SytemAlert } from '../ui/system-alert/system-alert.component';
 export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
 
   componentCssDisplay: string = 'fixed';
+  public style: Object = {};
 
   title: string = 'root component title';
   currentInteriorUrl: string = '';
@@ -37,7 +39,7 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(){
 
     this.componentCssDisplay = this.viewContainerRef.element.nativeElement.style.display;
-    this.viewContainerRef.element.nativeElement.style.display = 'none';
+    //this.viewContainerRef.element.nativeElement.style.display = 'none';
 
     //this.publicShow('http://estetdveri.ru/images/Royal/R1/royal_r1_n_ceramic_black.jpg');
 
@@ -53,6 +55,16 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
 
   childDataFetch(initData){
 
+  }
+
+  onResizeEnd(event: ResizeEvent): void {
+    this.style = {
+      position: 'fixed',
+      left: `${event.rectangle.left}px`,
+      top: `${event.rectangle.top}px`,
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.height}px`
+    };
   }
 
   setInterior(imageUri){

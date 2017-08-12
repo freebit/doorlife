@@ -10,7 +10,7 @@
   <ul>
     <li *ngFor="let door of doors" (click)="selectDoor(door.id)">
       <div class="image"><img [src]="door.imgSrc" alt=""></div>
-      <h3>{{door.title}}</h3>
+      <h3 class="title">{{door.title}}</h3>
     </li>
   </ul>
 </div>

@@ -6,8 +6,11 @@ import {
   AfterViewInit,
   OnDestroy,
   ComponentFactoryResolver,
-  NgZone
+  NgZone,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
+
 
 import { SytemAlert } from '../ui/system-alert/system-alert.component';
 import {ResizeEvent} from 'angular-resizable-element';
@@ -21,9 +24,15 @@ import {ResizeEvent} from 'angular-resizable-element';
 export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
 
   componentCssDisplay: string = 'fixed';
-  public style: Object = {};
+  doorViewStyle: Object = {};
 
-  title: string = 'root component title';
+  @ViewChild('doorlife') doorlife: ElementRef;
+  @ViewChild('selector') selector: ElementRef;
+  @ViewChild('interiorImage') interiorImage: ElementRef;
+  @ViewChild('doorView') doorView: ElementRef;
+
+
+  title: string = '';
   currentInteriorUrl: string = '';
   currentDoorUrl: string = '';
   alert : ComponentRef<any>;
@@ -41,24 +50,53 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
     this.componentCssDisplay = this.viewContainerRef.element.nativeElement.style.display;
     //this.viewContainerRef.element.nativeElement.style.display = 'none';
 
-    //this.publicShow('http://estetdveri.ru/images/Royal/R1/royal_r1_n_ceramic_black.jpg');
+    this.publicShow('http://estetdveri.ru/images/Elegance/e5/elegance_e5_n_korica_black-min.png');
 
-    window['freeb'] = window['freeb'] || {};
-    window['freeb'].doorlife = window['freeb'].doorlife || {};
-    window['freeb'].doorlife.open = this.publicShow.bind(this);
-    window['freeb'].doorlife.close = this.publicClose.bind(this);
+    this.globalInit();
   }
 
   ngAfterViewInit(){
+      let self = this;
+      let x = 0;
 
+      this.interiorImage.nativeElement.onload = function() {
+
+        let doorLifeWidth = self.doorlife.nativeElement.clientWidth;
+        let interiorImageWidth = this.width,
+            interiorImageHeight = this.height;
+
+        self.selector.nativeElement.style.width = (doorLifeWidth - interiorImageWidth - 2) + 'px';
+        console.log(`interior width - height ${interiorImageWidth} - ${interiorImageHeight}`);
+
+      };
   }
 
-  childDataFetch(initData){
+  globalInit(){
+      window['freeb'] = window['freeb'] || {};
+      window['freeb'].doorlife = window['freeb'].doorlife || {};
 
+      window['freeb'].doorlife.open = this.publicShow.bind(this);
+      window['freeb'].doorlife.close = this.publicClose.bind(this);
   }
+
+
+  childDataFetch(initData){}
+
+  validate(event: ResizeEvent): boolean {
+    const MIN_DIMENSIONS_PX: number = 50;
+
+    if(event.edges.right && !event.edges.bottom){}
+
+    if (event.rectangle.width < MIN_DIMENSIONS_PX || event.rectangle.height < MIN_DIMENSIONS_PX) {
+      return false;
+    }
+
+    return true;
+  }
+
 
   onResizeEnd(event: ResizeEvent): void {
-    this.style = {
+    this.doorViewStyle = {
       position: 'fixed',
       left: `${event.rectangle.left}px`,
       top: `${event.rectangle.top}px`,
@@ -119,5 +157,10 @@ export class DoorLifeRoot implements OnInit, AfterViewInit, OnDestroy {
     this.destroyAlert();
     window['freeb'].doorlife.showAlert = null;
   }
+
+  // @HostBinding('window:resize')
+  // updateDimentions(){
+  //   console.log('window:resize')
+  // }
 
 }

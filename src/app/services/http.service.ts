@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Response } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -18,7 +18,10 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getInteriors(): Observable<Interior[]>{
-    return this.http.get(`${config.dataUrl}${config.mainService}?action=interiors`).map((resp:Response) => {
+    const myHeaders = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: myHeaders});
+
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=interiors`, options).map((resp:Response) => {
 
       return resp.json().map( this.addMainUrl );
 
@@ -26,13 +29,19 @@ export class HttpService {
   }
 
   getCollections(): Observable<Collection[]>{
-    return this.http.get(`${config.dataUrl}${config.mainService}?action=collections`)
+    const myHeaders = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: myHeaders});
+
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=collections`, options)
         .map((resp:Response) => resp.json().map(this.addMainUrl))
         .catch((error: any) => Observable.throw(error) );
   }
 
   getDoorsByCollection(id:number): Observable<Door[]>{
-    return this.http.get(`${config.dataUrl}${config.mainService}?action=doors&collection=${id}`).map((resp:Response) => {
+    const myHeaders = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: myHeaders});
+
+    return this.http.get(`${config.dataUrl}${config.mainService}?action=doors&collection=${id}`, options).map((resp:Response) => {
 
       return resp.json().map(this.addMainUrl);
 

@@ -23,7 +23,8 @@ export class DoorListComponent implements OnInit {
     this.httpService.getCollections().subscribe(
 
         data => {
-            this.collections = data
+            this.collections = data;
+            this.getCollectionDoors(parseInt(this.collections[0].id));
         },
 
         error => {

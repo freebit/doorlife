@@ -1,11 +1,17 @@
-<div id="doorlife">
+<div #doorlife id="doorlife">
   <section class="stage-view">
     <div class="interior-view">
       <div class="image">
-        <img src="{{currentInteriorUrl}}" alt="">
+        <img #interiorImage src="{{currentInteriorUrl}}">
       </div>
-      <div class="door-view" [ngStyle]="style" ngDraggable mwlResizable [enableGhostResize]="true"
-           [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+      <div #doorView class="door-view"
+           [ngStyle]="doorViewStyle"
+           ngDraggable
+
+           mwlResizable
+           [validateResize]="validate"
+           [enableGhostResize]="true"
+           [resizeEdges]="{bottom: false, right: true, top: true, left: false}"
            (resizeEnd)="onResizeEnd($event)"
       >
         <div class="image">
@@ -18,7 +24,7 @@
     </div>
   </section>
 
-  <div class="selector">
+  <div #selector class="selector">
     <app-interior-list (onFetch)="childDataFetch($event)" (onSelect)="setInterior($event)"></app-interior-list>
     <app-door-list (onFetch)="childDataFetch($event)" (onDoorSelect)="setDoor($event)"></app-door-list>
   </div>
@@ -26,3 +32,4 @@
   <ng-template #tpl_1><span class="from-tpl">template 1</span></ng-template>
   <div class="closer" (click)="hide()">&times;</div>
 </div>
+
